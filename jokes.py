@@ -49,8 +49,7 @@ def get_joke_images():
     articles = soup.find_all(
         'div', class_='article block untagged mb15 typs_hot')
     article = random.choice(articles)    
-    body = article.find('span').text.replace('\n', '')
     img = 'http:' + article.find('div', class_='thumb').a.img['src']
-    res = {'body': body, 'img': img, }
-    return res
+
+    return img
 

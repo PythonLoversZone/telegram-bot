@@ -45,10 +45,7 @@ def joke(bot, update):
 
 # joke pic 命令部分
 def joke_pic(bot, update):
-    package = get_joke_images()
-    bot.send_message(chat_id=update.message.chat_id,
-                     text=package['body'])
-    bot.send_photo(chat_id=update.message.chat_id, photo=package['img'])
+    bot.send_photo(chat_id=update.message.chat_id, photo=get_joke_images())
 
 
 
