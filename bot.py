@@ -6,11 +6,14 @@ from telegram.ext import CommandHandler, Updater
 from jokes import get_joke
 from jokes import get_joke_images
 from invitecode import get_invite_code
+from image import parse_img_url
 
 # 设置log等级
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
+
+TOKEN = ''
 
 HELPTEXT = '''
 萌新bot,请大家多多关照！
@@ -19,12 +22,13 @@ HELPTEXT = '''
 /invitecode 获取注册邀请码
 /joke 来个段子
 /joke_pic 来张搞笑图
+/pic<空格>关键字 获取一张对应的图片 如（/pic 太阳）
 
 更多功能正在开发中....
 '''
 
 # 注册updater
-updater = Updater(token='')
+updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
 
@@ -48,6 +52,18 @@ def joke_pic(bot, update):
     bot.send_photo(chat_id=update.message.chat_id, photo=get_joke_images())
 
 
+def pic(bot, update):
+    keyword = update.message.text.split(' ')[-1]
+    print(keyword)
+    if keyword == '/pic':
+        bot.send_message(chat_id=update.message.chat_id,
+                         text='蜜汁错误，注意格式喔')
+    else:
+        photo_url = parse_img_url(keyword)
+        print(photo_url)
+        bot.send_photo(chat_id=update.message.chat_id,
+                       photo=photo_url)
+
 
 # 注册事件处理handler
 start_handler = CommandHandler('start', start)
@@ -61,6 +77,9 @@ dispatcher.add_handler(joke_handler)
 
 joke_pic_handler = CommandHandler('joke_pic', joke_pic)
 dispatcher.add_handler(joke_pic_handler)
+
+pic_handler = CommandHandler('pic', pic)
+dispatcher.add_handler(pic_handler)
 
 # 开始轮询
 updater.start_polling()
