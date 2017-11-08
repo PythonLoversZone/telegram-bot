@@ -47,7 +47,6 @@ def invitecde(bot, update):
 
 # joke 命令部分
 def get_duanzi(bot, update):
-    print('123')
     bot.send_message(chat_id=update.message.chat_id,
                      text=get_joke())
 
