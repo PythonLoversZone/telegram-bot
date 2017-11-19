@@ -60,31 +60,3 @@ def get_joke_images():
 
     return img
 
-
-def get_meizi_images():
-    '''煎蛋网妹子图'''
-    url = 'http://jandan.net/ooxx/page-{}'.format(random.randint(1, 268))
-    html = get_html_text(url)
-    if html != -1:
-        soup = BeautifulSoup(html, 'lxml')
-        imgs = soup.find_all('a', class_='view_img_link')
-        # 随机取出一个div
-        img = imgs[random.randint(0, len(imgs))]
-        return 'http:' + img['href']
-    else:
-        return -1
-
-def get_boring_images():
-    '''煎蛋网无聊图'''
-    url = 'http://jandan.net/pic/page-{}'.format(random.randint(1, 377))
-    html = get_html_text(url)
-    if html != -1:
-        soup = BeautifulSoup(html, 'lxml')
-        imgs = soup.find_all('a', class_='view_img_link')
-        # 随机取出一个div
-        img = imgs[random.randint(0, len(imgs))]
-        return 'http:' + img['href']
-    else:
-        return -1
-
-

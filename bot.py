@@ -4,8 +4,8 @@ from telegram.ext import CommandHandler, Updater
 
 #  导入第三方功能
 from spider import get_joke
-from spider import get_boring_images
-from spider import get_meizi_images
+
+from spider import get_joke_images
 # 导入获取邀请码模块
 from invitecode import get_invite_code
 
@@ -25,7 +25,6 @@ HELPTEXT = '''
 /invitecode 获取注册邀请码
 /duanzi 来个段子
 /funpic 无聊图
-/meizitu 来张妹纸图
 
 更多功能正在开发中....
 '''
@@ -52,7 +51,7 @@ def get_duanzi(bot, update):
 
 # joke pic 命令部分
 def get_boringpic(bot, update):
-    url = get_boring_images()
+    url = get_joke_images()
     if url[-3:] == 'gif':
         bot.send_document(chat_id=update.message.chat_id,
                           document=url)
@@ -60,14 +59,14 @@ def get_boringpic(bot, update):
         bot.send_photo(chat_id=update.message.chat_id, photo=url)
 
 
-# 煎蛋网妹纸图部分
-def get_meizitu(bot, update):
-    url = get_meizi_images()
-    if url[-3:] == 'gif':
-        bot.send_document(chat_id=update.message.chat_id,
-                          document=url)
-    else:
-        bot.send_photo(chat_id=update.message.chat_id, photo=url)
+# # 煎蛋网妹纸图部分
+# def get_meizitu(bot, update):
+#     url = get_joke_images()
+#     if url[-3:] == 'gif':
+#         bot.send_document(chat_id=update.message.chat_id,
+#                           document=url)
+#     else:
+#         bot.send_photo(chat_id=update.message.chat_id, photo=url)
 
 
 # 注册事件处理handler
@@ -83,8 +82,8 @@ dispatcher.add_handler(joke_handler)
 joke_pic_handler = CommandHandler('funpic', get_boringpic)
 dispatcher.add_handler(joke_pic_handler)
 
-meizitu_handler = CommandHandler('meizitu', get_meizitu)
-dispatcher.add_handler(meizitu_handler)
+# meizitu_handler = CommandHandler('meizitu', get_meizitu)
+# dispatcher.add_handler(meizitu_handler)
 
 # 开始轮询
 updater.start_polling()
