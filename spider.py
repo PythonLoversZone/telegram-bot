@@ -48,15 +48,18 @@ def get_joke():
 
 
 def get_joke_images():
-    '''糗事百科搞笑图片'''
+    '''
+    获取
+    https://www.eatliver.com/
+    搞笑图
+    '''
 
     html = get_html_text(
-        'https://www.qiushibaike.com/imgrank/page/{}'.format(random.randint(1, 10)))
+        'https://www.eatliver.com/page/{}/'.format(random.randint(1, 175)))
     soup = BeautifulSoup(html, 'lxml')
     articles = soup.find_all(
-        'div', class_='article block untagged mb15 typs_hot')
+        'div', class_='post-content clearfix')
     article = random.choice(articles)
-    img = 'http:' + article.find('div', class_='thumb').a.img['src']
+    img = article.find('img')['src']
 
     return img
-

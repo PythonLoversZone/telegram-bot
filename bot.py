@@ -49,24 +49,14 @@ def get_duanzi(bot, update):
     bot.send_message(chat_id=update.message.chat_id,
                      text=get_joke())
 
-# joke pic 命令部分
-def get_boringpic(bot, update):
+# 搞笑图命令部分
+def get_fun_pic(bot, update):
     url = get_joke_images()
     if url[-3:] == 'gif':
         bot.send_document(chat_id=update.message.chat_id,
                           document=url)
     else:
         bot.send_photo(chat_id=update.message.chat_id, photo=url)
-
-
-# # 煎蛋网妹纸图部分
-# def get_meizitu(bot, update):
-#     url = get_joke_images()
-#     if url[-3:] == 'gif':
-#         bot.send_document(chat_id=update.message.chat_id,
-#                           document=url)
-#     else:
-#         bot.send_photo(chat_id=update.message.chat_id, photo=url)
 
 
 # 注册事件处理handler
@@ -79,7 +69,7 @@ dispatcher.add_handler(invitecode_handler)
 joke_handler = CommandHandler('duanzi', get_duanzi)
 dispatcher.add_handler(joke_handler)
 
-joke_pic_handler = CommandHandler('funpic', get_boringpic)
+joke_pic_handler = CommandHandler('funpic', get_fun_pic)
 dispatcher.add_handler(joke_pic_handler)
 
 # meizitu_handler = CommandHandler('meizitu', get_meizitu)
