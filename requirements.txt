@@ -1,5 +1,4 @@
 lxml==4.1.1
-PyMySQL==0.7.11
 python-telegram-bot==8.1.1
 requests==2.18.4
 bs4==0.0.1
