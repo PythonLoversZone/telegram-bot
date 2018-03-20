@@ -72,8 +72,5 @@ dispatcher.add_handler(joke_handler)
 joke_pic_handler = CommandHandler('funpic', get_fun_pic)
 dispatcher.add_handler(joke_pic_handler)
 
-# meizitu_handler = CommandHandler('meizitu', get_meizitu)
-# dispatcher.add_handler(meizitu_handler)
-
 # 开始轮询
 updater.start_polling()
