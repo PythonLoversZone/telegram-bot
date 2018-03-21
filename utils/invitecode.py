@@ -1,7 +1,7 @@
 import base64
 import requests
 USERNAME = 'xxx'
-PORT = 'xxx'
+PORT = 1111
 URL = 'https://xxx/api/get/invitecode/'
 TOKEN = base64.b64encode(
     bytes('{}+{}'.format(USERNAME, PORT), 'utf8')).decode()

@@ -21,3 +21,4 @@ dispatcher.add_handler(unknown_handler)
 if __name__ == '__main__':
     # 开始轮询
     updater.start_polling()
+    updater.idle()
