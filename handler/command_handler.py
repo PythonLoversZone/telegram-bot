@@ -3,6 +3,7 @@ from telegram.ext import CommandHandler
 from utils.spider import get_joke, get_joke_images
 from utils.invitecode import get_invite_code
 
+
 HELPTEXT = '''
 萌新bot,请大家多多关照！
 
